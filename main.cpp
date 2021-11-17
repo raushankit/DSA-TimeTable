@@ -1,8 +1,9 @@
 #include "function.h"
 
-int main(){
+int main()
+{
     dept d;
-    int* n = getInput(d);
+    int *n = getInput(d);
     cout << "This is formatted in form of dept timetable." << endl;
     cout << "The Input was take from a file (input.txt)" << endl;
     cout << "Additional contraints followed are: " << endl;
@@ -11,15 +12,21 @@ int main(){
     cout << "3. Lab takes up 3 slots (3 hours as same as institute)" << endl;
     cout << "4. Lectures can take 7th to 12th slots" << endl;
     cout << "i have taken input to demontrate that time table cannot be built " << endl;
-    cout << "properly because you cannot get a proper time table obeying the above CONSTRAINTS."<<endl;
-    cout << "you can change minor field from 1 0 3 to 1 0 2 and you will get a proper timetable"<<endl;
+    cout << "properly because you cannot get a proper time table obeying the above CONSTRAINTS." << endl;
+    cout << "you can change minor field from 1 0 3 to 1 0 2 and you will get a proper timetable" << endl;
     cout << "**MAXIMIZE TERMINAL TO GET A BETTER LOOK AT THE TIMETABLE." << endl;
     cout << "\n\n";
-    
-    if(d.checkData()){
+
+    if (d.checkData())
+    {
         auto z = d.extractData();
         int p = d.getBreak();
-        cout << maketimetable(z,n,p) << "\n\n";
+        timetable tt = maketimetable(z, n, p);
+        cout << tt << endl << endl;
+        ofstream fout;
+        fout.open("output/test_input1.txt", ofstream::out | ostream::trunc);
+        fout << tt << endl << endl;
+        fout.close();
     }
     return 0;
 }

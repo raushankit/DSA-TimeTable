@@ -54,6 +54,7 @@ int* getInput(dept &d){
             }
         }
     }
+    fin.close();
     return np;
 }
 
