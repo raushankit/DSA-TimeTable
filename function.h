@@ -6,8 +6,10 @@
 
 using namespace std;
 
-int* parse(string);
+void rules();
 
-int* getInput(dept &);
+int *parse(string);
 
-timetable maketimetable(scalar<duo<int, string>> &, int*, int);
+int *getInput(dept &);
+
+timetable maketimetable(scalar<duo<int, string>> &, int *, int);
