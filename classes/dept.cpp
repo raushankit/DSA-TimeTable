@@ -1,12 +1,14 @@
 #include "dept.h"
 
 dept::dept() : max_class(new int[3]), class_dur(new int[3]), Break(0), name(""), d(new scalar<course>[4]) {}
+
 dept::~dept()
 {
     delete[] d;
     delete[] max_class;
     delete[] class_dur;
 }
+
 ostream &operator<<(ostream &out, const dept &p)
 {
     out << "Dept. Name : " << p.name << endl;
@@ -26,15 +28,22 @@ ostream &operator<<(ostream &out, const dept &p)
     cout << "\n";
     return out;
 }
+
 void dept::setName(string n) { name = n; }
+
 string dept::getName() { return name; }
+
 void dept::insertCourse(int n, course p)
 {
     d[n].push(p);
 }
+
 int *dept::getMaxClass() { return max_class; }
+
 int *dept::getClassDur() { return class_dur; }
+
 int dept::getBreak() { return Break; }
+
 void dept::setMaxClass(int *p)
 {
     max_class = new int[3];
@@ -43,6 +52,7 @@ void dept::setMaxClass(int *p)
         max_class[i] = p[i];
     }
 }
+
 void dept::setClassDur(int *p)
 {
     class_dur = new int[3];
@@ -51,7 +61,9 @@ void dept::setClassDur(int *p)
         class_dur[i] = p[i];
     }
 }
+
 void dept::setBreak(int m) { Break = m; }
+
 scalar<duo<int, string>> dept::extractData()
 {
     duo<int, string> tl;

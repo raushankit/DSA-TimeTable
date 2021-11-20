@@ -1,6 +1,7 @@
 #include "prof.h"
 
 prof::prof() : name(""), course_code(""){};
+
 prof::prof(string nam, string code)
 {
     name = nam;
@@ -9,12 +10,14 @@ prof::prof(string nam, string code)
     for (int i = 0; i < 11; i++)
         available[i] = true;
 }
+
 prof::prof(const prof &p)
 {
     name = p.name;
     course_code = p.course_code;
     available = p.available;
 }
+
 prof &prof::operator=(const prof &p)
 {
     if (this != &p)
@@ -40,9 +43,13 @@ int prof::getAvailability()
     return 0;
 }
 void prof::setName(string name) { this->name = name; }
+
 string prof::getName() { return name; }
+
 void prof::setCourseCode(string code) { course_code = code; }
+
 string prof::getCourseCode() { return course_code; }
+
 ostream &operator<<(ostream &out, const prof &p)
 {
     out << "Prof name: " << p.name << endl;

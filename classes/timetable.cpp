@@ -16,6 +16,7 @@ timetable::timetable(int n, int l, int b)
         }
     }
 }
+
 timetable::~timetable()
 {
     for (int i = 0; i < 5; i++)
@@ -24,11 +25,13 @@ timetable::~timetable()
         delete[] f[i];
     }
 }
+
 void timetable::setString(string key, int day, int hour)
 {
     z[day][hour] = key;
     f[day][hour] = false;
 }
+
 int timetable::getSlotlec(int day)
 {
     for (int i = 6; i < 6 + hours; i++)
@@ -38,6 +41,7 @@ int timetable::getSlotlec(int day)
     }
     return -1;
 }
+
 ostream &operator<<(ostream &out, const timetable &p)
 {
     out << "_____";
