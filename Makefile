@@ -3,6 +3,7 @@ FLAGS = -O5 -Wall -W
 RM  = rm -f
 EXEC = a.out
 path = classes/
+objdir = make/
 
 OBJECTS = \
 	 main.o \
