@@ -3,7 +3,7 @@
 void rules()
 {
     cout << "This is formatted in form of dept timetable." << endl;
-    cout << "The Input was take from a file (input.txt)" << endl;
+    cout << "The input was take from a file (input.txt)" << endl;
     cout << "Additional contraints followed are: " << endl;
     cout << "1. one subject can have only 1 class in a day. " << endl;
     cout << "2. tutorials can have 2 slots one : 1st and two : 6th if required" << endl;

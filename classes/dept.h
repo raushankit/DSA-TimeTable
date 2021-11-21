@@ -1,8 +1,8 @@
 #ifndef _DEPT_
 #define _DEPT_
-#include "scalar.h"
+#include "../includes/scalar.h"
 #include "course.h"
-#include "pair.h"
+#include "../includes/pair.h"
 
 class dept
 {

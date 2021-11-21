@@ -1,33 +1,35 @@
 CPP = g++ 
 FLAGS = -O5 -Wall -W
-RM  = rm -f
+RM  = rm -f -r
 EXEC = a.out
-path = classes/
+INCLUDES = -Iincludes/
+SRCPATH = classes
+OBJDIR = build
 
-OBJECTS = \
-	 main.o \
+CLASSES = \
 	 course.o \
 	 dept.o \
-	 function.o \
 	 prof.o \
 	 timetable.o \
 
-all: $(OBJECTS) compile touch 
+FUNCTS = \
+	 main.o \
+	 function.o \
 
-main.o : main.cpp 
-					 $(CPP) $(FLAGS) -c main.cpp
-course.o : $(addprefix $(path),course.cpp)
-			   		 $(CPP) $(FLAGS) -c $(addprefix $(path),course.cpp)
-dept.o : $(addprefix $(path),dept.cpp) $(addprefix $(path),scalar.h) $(addprefix $(path),pair.h)
-					 $(CPP) $(FLAGS) -c $(addprefix $(path),dept.cpp)
-function.o : function.cpp
-					 $(CPP) $(FLAGS) -c function.cpp
-prof.o : $(addprefix $(path),prof.cpp)
-					 $(CPP) $(FLAGS) -c $(addprefix $(path),prof.cpp)
-timetable.o : $(addprefix $(path),timetable.cpp)
-					 $(CPP) $(FLAGS) -c $(addprefix $(path),timetable.cpp)
+OBJECTS = $(addprefix $(OBJDIR)/, $(FUNCTS)) $(addprefix $(OBJDIR)/, $(CLASSES))
+
+all: $(OBJECTS) compile touch
+
+$(OBJDIR)/main.o: main.cpp | $(OBJDIR)
+					 $(CPP) $(FLAGS) $(INCLUDES) -c main.cpp -o $(OBJDIR)/main.o
+$(OBJDIR)/function.o: function.cpp | $(OBJDIR)
+					 $(CPP) $(FLAGS) $(INCLUDES) -c function.cpp -o $(OBJDIR)/function.o
+$(OBJDIR)/%.o: $(SRCPATH)/%.cpp | $(OBJDIR)
+					 $(CPP) $(FLAGS) $(INCLUDES) -c $< -o $@
+$(OBJDIR):
+					 mkdir $@
 clean:  
-					 $(RM) $(OBJECTS) $(EXEC) 
+					 $(RM) $(OBJDIR) $(EXEC) 
 
 compile: 
 					 $(CPP) $(FLAGS) $(OBJECTS) -o $(EXEC) 
