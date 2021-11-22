@@ -2,9 +2,13 @@ CPP = g++
 FLAGS = -O5 -Wall -W
 RM  = rm -f -r
 EXEC = a.out
+
+CRDIR = createdir
 INCLUDES = -Iincludes/
 SRCPATH = classes
 OBJDIR = build
+OBJDIRFUNCTS = main
+OBJDIRCLASSES = classes
 
 CLASSES = \
 	 course.o \
@@ -16,18 +20,18 @@ FUNCTS = \
 	 main.o \
 	 function.o \
 
-OBJECTS = $(addprefix $(OBJDIR)/, $(FUNCTS)) $(addprefix $(OBJDIR)/, $(CLASSES))
+OBJECTS = \
+	 $(addprefix $(OBJDIR)/$(OBJDIRFUNCTS)/, $(FUNCTS)) \
+	 $(addprefix $(OBJDIR)/$(OBJDIRCLASSES)/, $(CLASSES)) \
 
 all: $(OBJECTS) compile touch
 
-$(OBJDIR)/main.o: main.cpp | $(OBJDIR)
-					 $(CPP) $(FLAGS) $(INCLUDES) -c main.cpp -o $(OBJDIR)/main.o
-$(OBJDIR)/function.o: function.cpp | $(OBJDIR)
-					 $(CPP) $(FLAGS) $(INCLUDES) -c function.cpp -o $(OBJDIR)/function.o
-$(OBJDIR)/%.o: $(SRCPATH)/%.cpp | $(OBJDIR)
+$(OBJDIR)/$(OBJDIRFUNCTS)/%.o: %.cpp | $(CRDIR)/$(OBJDIR)/$(OBJDIRFUNCTS)
 					 $(CPP) $(FLAGS) $(INCLUDES) -c $< -o $@
-$(OBJDIR):
-					 mkdir $@
+$(OBJDIR)/$(OBJDIRCLASSES)/%.o: $(SRCPATH)/%.cpp | $(CRDIR)/$(OBJDIR)/$(OBJDIRCLASSES)
+					 $(CPP) $(FLAGS) $(INCLUDES) -c $< -o $@
+$(CRDIR)/%:
+					 mkdir -p $*
 clean:  
 					 $(RM) $(OBJDIR) $(EXEC) 
 
