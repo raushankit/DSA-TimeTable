@@ -37,7 +37,8 @@ clean:
 
 compile: 
 					 $(CPP) $(FLAGS) $(OBJECTS) -o $(EXEC) 
-
+run: | all
+					 ./$(EXEC)
 touch:
 					 @echo " "
 					 @echo "Compilation done successfully..................."
